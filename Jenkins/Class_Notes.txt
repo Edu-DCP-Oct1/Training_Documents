@@ -1,3 +1,5 @@
+DCP - Sep. Weekend - 14th Oct. 2023
+
 Docker Module -- 
 
 Kubernetes -- 
@@ -306,3 +308,287 @@ Summary :::
 
 	What is Jenkins / roles & Responsibilities 
 	Install Jenkins 
+					
+				
+			
+###################
+15th Oct. 2023			
+###################
+
+				Administrator - Jenkins
+					- Installation and Configuration of Jenkins
+					- Plugins Management
+					- User Management 
+					- Tools Management
+					- Credential Management 
+					- Security Management 
+					- Manangement of Jenkins Master and Slave Nodes
+					- Onboarding Applications to DevOps using Jenkins 
+					- Create/automate end-to-end CI/CD Pipeline/Project
+					- Backup and Recovery
+					- Troubleshooting the issues		
+			
+			
+	Environments :::
+	
+		Non-Production Environment														Production Environment
+		
+			Dev Environment			VM
+			Build Environment       VM
+			Testing Environment     VM 
+				QA 	
+				UAT 									=====>								Prod Environment VM
+				
+				
+		
+		Jenkins_server (Non-Production) (VM)													Jenkins_server (Non-Production)
+		
+		Jenkins ==> Build Orchestration Tool.
+			
+			DevOps Automation :
+				Application Build 	--> 	Process of Compiling the Src_Code and Create Artifacts(Binaries - *.war/*.jar/.dll/*.exec)
+				Unit Testing 
+				Promote for further testing QA/UAT
+				Email Notifications 
+				
+				Released to Production 
+				Monitoring
+				
+				
+			Build --> Maven/ANT/Gradle ==> 
+			
+		
+		Authentication ::::
+		
+			Types of Authentications! 
+			
+				password based Auth 
+				Key based Auth 
+				Token based Auth 
+				Certs
+				Passwordless Auth 
+		
+		
+		Jenkins Project / Jobs / Pipeline :::
+		
+			-- Free Style Projects 
+			
+			-- Pipeline Projects	-	created using Groovy Scripts!
+			
+			Handling Jenkins Variables ::::			"${var_name}"		"${varname}"
+			
+				Environment Variables 
+				
+				User Defined Variables
+				
+			
+			-- Pipeline Projects	-	created using Groovy Scripts!	
+					
+					- Scripted Pipeline 	-->
+					- Declarative Pipeline  -->
+
+			Scripting Language 		:: Shell/Groovy/YAML/Python.
+			Programming Language	::
+			
+			
+pipeline {
+    agent { label 'slave1' }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Deploy to QA Envi.') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}	
+		
+		
+			Pipeline Project :::
+			
+				Stages :
+					Clone the Src_Code Repos in the build server
+					Build 
+					Create Artifacts
+				
+				
+				
+				
+		Build Tools :::
+		Slave Node Configuration....
+		
+			Application :: 	Java Web Application Development
+							Maven / Gradle 
+							
+				Maven ==> Build Tool
+				
+					pom.xml ==> It is used to define the dependencies and plugins.
+					maven goals :::
+						clean		
+						test
+						build 
+						package 
+				
+				Application Team :
+				
+						Create the Src_Code & Commit the changes in Src_Code Repository
+					
+			DevOps Automation :
+				Application Build 	--> 	Process of Compiling the Src_Code and Create Artifacts(Binaries - *.war/*.jar/.dll/*.exec)
+				Unit Testing 
+				Promote for further testing QA/UAT
+				Email Notifications 	
+				
+			Identify the src_code repo url.
+			
+			
+			Jenkins Slave Node Configuration :::
+			
+			Jenkins_Master :::(VM)	Is to Create/Manage Jenkins Jobs and Schedule the Jobs.
+					Jenkins_SlaveNode1 ==> Build Application - Java 
+					Jenkins_SlaveNode1.2 ==> Build Application - Java 
+					Jenkins_SlaveNode2 ==> Build Application - .Net 
+					Jenkins_SlaveNode3 ==> Build Application - Python 
+					Jenkins_SlaveNode4 ==> Build Application - NodeJS
+					Jenkins_SlaveNode5 ==> Build Application - Angular
+					
+			
+			
+		- Handling Remote Servers!
+		
+		
+			Jenkins_Master :::(VM)	Is to Create/Manage Jenkins Jobs and Schedule the Jobs.
+			
+					Jenkins_SlaveNode1 ==> Build Application - Java 
+								1. Launch VM 
+								2. Install the build tools
+										GIT,JDK,MAVEN
+								3. Create user in Slave Node 
+								4. Authentication : SSH Connection
+										SSH-Key Based Authentication.
+
+
+
+
+pipeline {
+    agent { label 'slave1' }
+
+    tools {
+        maven "maven-3.6.3"
+    }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM-Checkout'
+                git 'https://github.com/LoksaiETA/Java-mvn-app2.git'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+                echo 'Perform Maven Build'
+                sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to QA Envi.') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+_______________________________________________________
+Configure Slave Node1 for Java Maven App. :
+---------------------------------------------------
+Install Java ::
+
+sudo -i
+
+
+sudo apt update -y 
+sudo apt install openjdk-11-jre -y
+java -version
+
+Install GIT :
+
+sudo apt install git -y
+
+Install Maven - Build Tool :
+https://maven.apache.org/install.html
+
+sudo apt install maven -y 
+
+
+Create User in Jenkins Slave Machine & Create SSH Keys 
+
+	SSH Keys --> is composed of public and private keys 
+
+
+#Add User : 
+
+#useradd -m -d /home/devopsadmin devopsadmin
+#useradd devopsadmin
+
+useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+su - devopsadmin
+
+#ssh-keygen
+
+#for Ubuntu ::
+ssh-keygen -t rsa -b 4096 -m PEM
+
+
+ls ~/.ssh 
+
+#You should see following two files:
+
+#id_rsa - private key
+#id_rsa.pub - public
+
+
+cat id_rsa.pub > authorized_keys
+
+chown -R devopsadmin /home/devopsadmin/.ssh
+chmod 600 /home/devopsadmin/.ssh/authorized_keys
+chmod 700 /home/devopsadmin/.ssh
+
+
+In Jenkins Master - Add Node Configuration
+		
+		Goto Manage Jenkins - Add New Node Configuration										
+			
+			
+Summary ::
+
+		Config Jenkins_Master & Slave 
+		Create Pipeline -- 
+			SCM_Checkout 
+			Build 
+			
+Next ::
+		Automate the CICD pipeline
+		Deploy to Tomcat Server 
+		Email Notification....
+		Best Practise.
+			
+			
+			
+			
+			
+
+
+
+			
+				
+		
