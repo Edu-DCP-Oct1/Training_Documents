@@ -585,10 +585,283 @@ Next ::
 			
 			
 			
+###################
+21th Oct. 2023			
+###################			
 			
-
-
-
-			
-				
+		Automate the CICD pipeline
+		Deploy to Tomcat Server		
+		Email Notification....
+		Best Practise.
 		
+		
+			- Launch VM - Application Execution
+			
+			
+			
+	Environments :::
+	
+		Non-Production Environment														Production Environment
+		
+			Dev Environment			VM
+			Build Environment       VM
+			Testing Environment     VM 
+				QA 		--> Quality Assurance Testing
+				UAT 	--> User Acceptance Testing			=====>								Prod Environment VM			
+				
+
+
+		Launch an Instance :
+		
+				Install Application Server ::: (tomcat)
+					
+				In Jenkins Master ::	Publish over SSH Plugins 
+				
+					Jenkins_Master				==> Create & Manage Jenkins Jobs/Schedule the job to slave ndoes.
+						Jenkins_SlaveNode1		==> Perform the build 
+					QA_Server 					==> Run the application using tomcat 
+					UAT_Server 
+					Kubernetes
+				
+
+				What is Deployment????
+				
+				--> It is process of copying the artifacts/binaries to the target environment.
+				
+				
+				Source Dir. 																		Destination Dir.
+				
+					target/mvn-hello-world.war					====>									/opt/tomcat/webapps/mvn-hello-world.war	
+
+
+				From Jenkins Dashboard Install Plugin :	Publish over SSH Plugins  
+				
+				Install with Restart Option - 
+				
+				go to system config. and Add Remote Server.
+				
+				cp *.war /opt/tomcat1/webapp /opt/tomcat1/webapp
+				
+pipeline {
+    agent { label 'slave1' }
+
+    tools {
+        maven "maven-3.6.3"
+    }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM-Checkout'
+                git 'https://github.com/LoksaiETA/Java-mvn-app2.git'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+                echo 'Perform Maven Build'
+                sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to QA Envi.') {
+            steps {
+				script {
+					sshPublisher(publishers: [sshPublisherDesc(configName: 'QA_Server-WE', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/mvn-hello-world.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+				}
+            }
+        }
+    }
+}				
+
+
+
+Build Triggers :::
+
+
+		- Build Periodic 		https://crontab.guru/
+		
+			It is used to schedule the job based on CronTab.
+
+					
+					Eg.: 
+						To run the Jobs for every 1 Hour.
+				
+				UseCase ::
+							Clean_up activities on the Slave nodes.
+								Job ==> Scheduled to run - once in 3 days.
+								
+							Environments :::			8AM - 10PM
+							
+								Non-Production Environment									Production Environment
+								
+									Dev Environment			VM
+									Build Environment       VM
+									Testing Environment     VM 
+										QA 		--> Quality Assurance Testing
+										UAT 	--> User Acceptance Testing			=====>		Prod Environment VM			
+																	
+
+
+######################Install TOMCAT Application Server on Ubuntu :::
+
+
+https://tomcat.apache.org/download-80.cgi
+
+Enable Port 8080 :
+
+sudo -i
+sudo apt update -y
+sudo apt install openjdk-11-jre -y 
+java -version
+
+#edit /etc/profile & add JAVA_HOME
+
+#/usr/lib/jvm/java-11-openjdk-amd64/
+
+vi /etc/profile
+
+/usr/lib/jvm/java-11-openjdk-amd64
+
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+
+source /etc/profile
+
+Install Tomcat ::
+
+cd /opt
+wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.95/bin/apache-tomcat-8.5.95.tar.gz
+
+https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.95/bin/apache-tomcat-8.5.95.tar.gz
+
+tar -xvzf /opt/apache-tomcat-8.5.95.tar.gz
+
+apache-tomcat-8.5.95.tar.gz
+
+mv apache-tomcat-8.5.95 tomcat
+
+#Start Tomcat Server:
+#Goto:
+
+cd /opt/tomcat/bin
+./startup.sh
+
+
+###########################################
+
+#Add User : 
+
+#useradd -m -d /home/devopsadmin devopsadmin
+#useradd devopsadmin
+
+useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+su - devopsadmin
+
+#ssh-keygen
+
+#for Ubuntu ::
+ssh-keygen -t rsa -b 2048 -m PEM
+
+
+ls ~/.ssh 
+
+#You should see following two files:
+
+#id_rsa - private key
+#id_rsa.pub - public
+
+
+cat id_rsa.pub > authorized_keys
+
+chown -R devopsadmin /home/devopsadmin/.ssh
+chmod 600 /home/devopsadmin/.ssh/authorized_keys
+chmod 700 /home/devopsadmin/.ssh
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#make devopsadmin user as a owner to tomcat dir :
+
+chown -R devopsadmin /opt/tomcat
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Deployment --> Copy the artifacts from source to target server 
+
+	--> Jenkins_Slave 											--->					Tomcat_Server 
+			target/mvn-hello-world.war							====>					/opt/tomcat/webapps/	
+			
+			
+Install publish over ssh in Jenkins Master 		& restart jenkins 	
+
+					
+		
+		- Github webhook :::
+		
+			Both Github-webhook and Poll SCM are based on the source code changes.
+			
+				Github-webhook -- will trigger the job as soon as we commit the changes in Src_Code Repository.
+				
+				- Create web hook configurations in the Src_Code Repository
+					- Config the Jenkins payload url in src_code Repository
+					
+						Eg.: 
+								http://3.108.59.111:8080/github-webhook/
+								
+								http://13.232.187.76:8080/github-webhook/
+								
+				- Enable Github trigger option in Jenkins Job.
+				- Ensure that GIT is installed in Jenkins Master Node.
+						sudo apt install git -y
+		
+		
+		- Poll SCM	:::
+		
+				Poll SCM - will be scheduled to run the job only if there is any commit/push in Src_Code Repository.
+				
+				Using CrodTab - Schedule the Jobs 
+				
+					Eg.: 
+						To run the Jobs for every 1 Hour.
+						
+					Use Case :::
+								Test Cycles :::
+												8AM 
+												12 Noon 
+												3 PM
+				
+
+
+Notifications ::
+
+		Email Notifications :::::
+
+
+Email Notification Plugins :::
+
+SMTP Server :
+smtp.gmail.com
+
+SMTP Authentication
+
+SMTP Port :: 465
+
+Login to Gmail :::
+
+Click Account Settings
+
+select Security 
+
+MFA --> mobile#
+App Password = 16 bytes of code.
+What ? window
+Which Appln - email
+		
+
+Next :::
+IAC Tools :::
+
+	Ansible ::::
+	Terraform :::
+
+
+Docker/Kubernetes 
