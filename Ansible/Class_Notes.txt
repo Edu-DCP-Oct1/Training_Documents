@@ -1,0 +1,1004 @@
+DCP - Sep. Weekend - 14th Oct. 2023
+
+Docker Module -- 
+
+Kubernetes -- 
+
+Docker Compose 
+
+GIT - Completed 
+	Git Workflow 
+		init 
+		add
+		commit 
+		clone
+		push
+		pull
+		fetch 
+		diff
+		show
+		commit with opts 
+		reset
+		revert 
+		
+	Git Branching Strategies
+		branch
+		merge 
+		merge conflict 
+		with with multiple branches
+			merge rebase squash
+			
+		stash 
+		
+	Remote Repo.
+		github 
+	
+		remote 
+
+	
+
+Jenkins  --> Not Start!
+
+
+
+
+CI using Jenkins
+ 
+CM using Ansible --
+
+
+DevOps ::::
+
+	DevOps is a Software Development Strategies which help to promote collaborate between the teams like Development and Operations team,
+	to achieve Continous Development, Continous Integration, Continous Testing, Continous Delivery, Continous Deployment, Continous Monitoring in an automated fashion.
+	
+	Teams: 
+	
+		DevOps Team 					==> DevOps Asso., Engg., Lead, Architect, Consultant,
+			Infra-Provision Team 
+			Appln. Development Team 
+			Testing Team 
+			Release Mgmt Team
+			Production Support 
+			Production Monitoring 
+			Security Team 
+			
+	
+		Infra-Structure --> Provision Team 
+			IAC Tools :
+				Terraform	==> Used for infra-structure povisioning/Creation 
+				Ansible 	==> Configuration Management Tool - Used for Server configurations
+	
+	DevOps Stages: 
+	
+	
+	
+	Continous Development
+		IDEs - Eclipse, VSC, GIT 
+		
+			Coding --
+			
+			Application Build 	--> 	Process of Compiling the Src_Code and Create Artifacts(Binaries - *.war/*.jar/.dll/*.exec)
+			Unit Testing 
+			Promote for further testing QA/UAT
+			Email Notifications 
+			
+			Released to Production 
+			Monitoring
+			
+		Using DevOps Approach ::::
+				Coding.
+				Commit the changes to src_code Repository.
+				
+			DevOps Automation :
+				Application Build 	--> 	Process of Compiling the Src_Code and Create Artifacts(Binaries - *.war/*.jar/.dll/*.exec)
+				Unit Testing 
+				Promote for further testing QA/UAT
+				Email Notifications 
+				
+				Released to Production 
+				Monitoring
+
+			Tools : IDEs - Eclipse, VSC, GIT 
+		
+		
+			
+	Continous Integration,
+				Tools:	Jenkins, Ansible, Docker, Kubernetes
+
+	
+	Continous Testing, 
+				Tools: Junit, TestNG, Selenium, Jenkins 
+			
+	
+	Continous Delivery/Deployment :
+				Both Continous Delivery/Deployment used to Release the products to Production
+					
+					Continous Delivery 		==> Requires a Manual Approval for Production Release 
+					Continous Deployment 	==> Is Completely Automated - Doesn't requires any Manual Intervension/Approval for Production Release
+
+		Deployment ::::
+		
+				==> It is a process of copying the artifacts from one environment to another/target environment
+
+			Banking Domain/ INS/ :::
+			
+				Deployment Window ::: 4Hrs to 6Hrs. (Non-Business Hrs.) Downtime.
+					Continous Delivery ==>  Requires Manual approval from all their stakeholders
+							Due to some reason, this failed!
+									Fix!/Revert!
+						
+			
+			facebook/google/amazon.com :::
+				Continous Deployment 	==> Is Completely Automated - Doesn't requires any Manual Intervension/Approval for Prod Release. 
+				
+				Tools:	Jenkins, Ansible, Docker, Kubernetes
+				
+						Monolith Applications :
+							Tightly coupled -- with lot of dependencies
+						Micro-Service Based Application 
+			
+				E_Commerce portal ::
+					www.amazon.com 
+
+			Monolith Applications :
+				Tightly coupled -- with lot of dependencies
+				Here the deployment happens at the application level.
+							
+				sign_up			developer1 - code, test ==> Cannot deploy to prod independently.
+				sign_in
+				Search
+				Add to cart
+				payment
+				confirm order 
+				track
+
+
+			Micro-Service Based Application	
+				Loosely coupled -- with out any dependencies
+				Here the modules are considered as a service (Micro-Service)
+				Here the deployment happens at the sevice level.
+							
+				sign_up			developer1 - Independently code, test & deploy to prod without impacting others service.
+				sign_in
+				Search
+				Add to cart
+				payment
+				confirm order 
+				track
+
+
+			
+	Continous Monitoring
+				Tools:	Jenkins, Prometheus/Grafana
+					Infra-Structure Monitoring  - Prometheus/Grafana/datadog/dynatrace
+					Application Monitoring 		- AppDynamics
+				
+				
+	Environments :::
+	
+		Non-Production Environment														Production Environment
+		
+			Dev Environment
+			Build Environment
+			Testing Environment
+				QA 
+				UAT 									=====>								Prod Environment
+				
+	
+	DevOps is all about :::
+			People 
+			Process 
+			Tools 
+			
+		Telecomm-Domain 
+			SP1 ==> Introduce a new offers --> It should release to customers as early as possible 
+			SP2 ==> 
+			
+			
+	Tools :::
+				Open-Source DevOps Tools 	
+				
+					git, jenkin, docker, kubernetes, prometheus/ Grafana, Ansible, terraform 
+				
+				Managed Services - AWS / Azure / GCP 
+				
+				
+	Next Jenkins ::::
+
+			
+		Lab ::: 
+		
+			- AWS Free Tier 
+				Launch VMs
+			Connect to VMs 
+				- EC2 Instance Connect 
+				- SSH Agent - To access Remote machines 
+					Putty 
+					MobaXterm			https://mobaxterm.mobatek.net/download.html
+				- Terminals
+			- Create GITHub Account 
+			- Create dockerhub Account
+			- Install Visual Studio Code 
+			
+			
+	
+		Jenkins - Is a build Orchestration Tool :
+			
+			- Master Slave Architecture :::
+			
+			Jenkins :
+			
+			Developers' Perspective ::
+			
+				Developers are just the Jenkins consumers.
+			
+			
+			DevOps Perspective ::
+			
+				Administrator - Jenkins
+					- Installation and Configuration of Jenkins
+					- Plugins Management
+					- User Management 
+					- Tools Management
+					- Credential Management 
+					- Security Management 
+					- Manangement of Jenkins Master and Slave Nodes
+					- Onboarding Applications to DevOps using Jenkins 
+					- Create/automate end-to-end CI/CD Pipeline/Project
+					- Backup and Recovery
+					- Troubleshooting the issues
+					
+		Installation and Configuration of Jenkins :::
+					https://www.jenkins.io/doc/book/installing/
+					
+					
+			1. Launch AWS Instance - Ubuntu VM
+			2. 1 vm -- 750 hrs/month 
+				10 vms -- 75hrs 
+				
+				
+		Linux Package Managers :::	install/uninstall/update the package
+		
+			- Ubuntu 		apt or apt-get 
+			- Centos/RHEL	yum
+			- Fedora 		dnf 
+			
+		As a root user only we can run the package manager!
+		
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Jenkins Installation Steps ::
+
+1. Launch AWS Instance - Ubuntu VM
+2. Add port 8080 in security Group  - default port for jenkins
+
+sudo -i 
+apt update -y 
+
+# JDK Package Installation ::
+
+sudo apt install fontconfig openjdk-11-jre -y
+java -version
+		
+# Jenkins Installation in Ubuntu ::
+		
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install jenkins -y
+
+jenkins --version
+systemctl status jenkins 
+systemctl stop jenkins 
+systemctl start jenkins 
+systemctl restart jenkins 
+systemctl enable jenkins 
+
+
+# Jenkins Post installation Activities :::		# default username : admin / pasword : admin
+	Unlocked Jenkins 
+	Installed Plugins 
+	Created Admin user 
+		
+Summary :::
+
+	What is Jenkins / roles & Responsibilities 
+	Install Jenkins 
+					
+				
+			
+###################
+15th Oct. 2023			
+###################
+
+				Administrator - Jenkins
+					- Installation and Configuration of Jenkins
+					- Plugins Management
+					- User Management 
+					- Tools Management
+					- Credential Management 
+					- Security Management 
+					- Manangement of Jenkins Master and Slave Nodes
+					- Onboarding Applications to DevOps using Jenkins 
+					- Create/automate end-to-end CI/CD Pipeline/Project
+					- Backup and Recovery
+					- Troubleshooting the issues		
+			
+			
+	Environments :::
+	
+		Non-Production Environment														Production Environment
+		
+			Dev Environment			VM
+			Build Environment       VM
+			Testing Environment     VM 
+				QA 	
+				UAT 									=====>								Prod Environment VM
+				
+				
+		
+		Jenkins_server (Non-Production) (VM)													Jenkins_server (Non-Production)
+		
+		Jenkins ==> Build Orchestration Tool.
+			
+			DevOps Automation :
+				Application Build 	--> 	Process of Compiling the Src_Code and Create Artifacts(Binaries - *.war/*.jar/.dll/*.exec)
+				Unit Testing 
+				Promote for further testing QA/UAT
+				Email Notifications 
+				
+				Released to Production 
+				Monitoring
+				
+				
+			Build --> Maven/ANT/Gradle ==> 
+			
+		
+		Authentication ::::
+		
+			Types of Authentications! 
+			
+				password based Auth 
+				Key based Auth 
+				Token based Auth 
+				Certs
+				Passwordless Auth 
+		
+		
+		Jenkins Project / Jobs / Pipeline :::
+		
+			-- Free Style Projects 
+			
+			-- Pipeline Projects	-	created using Groovy Scripts!
+			
+			Handling Jenkins Variables ::::			"${var_name}"		"${varname}"
+			
+				Environment Variables 
+				
+				User Defined Variables
+				
+			
+			-- Pipeline Projects	-	created using Groovy Scripts!	
+					
+					- Scripted Pipeline 	-->
+					- Declarative Pipeline  -->
+
+			Scripting Language 		:: Shell/Groovy/YAML/Python.
+			Programming Language	::
+			
+			
+pipeline {
+    agent { label 'slave1' }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Deploy to QA Envi.') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}	
+		
+		
+			Pipeline Project :::
+			
+				Stages :
+					Clone the Src_Code Repos in the build server
+					Build 
+					Create Artifacts
+				
+				
+				
+				
+		Build Tools :::
+		Slave Node Configuration....
+		
+			Application :: 	Java Web Application Development
+							Maven / Gradle 
+							
+				Maven ==> Build Tool
+				
+					pom.xml ==> It is used to define the dependencies and plugins.
+					maven goals :::
+						clean		
+						test
+						build 
+						package 
+				
+				Application Team :
+				
+						Create the Src_Code & Commit the changes in Src_Code Repository
+					
+			DevOps Automation :
+				Application Build 	--> 	Process of Compiling the Src_Code and Create Artifacts(Binaries - *.war/*.jar/.dll/*.exec)
+				Unit Testing 
+				Promote for further testing QA/UAT
+				Email Notifications 	
+				
+			Identify the src_code repo url.
+			
+			
+			Jenkins Slave Node Configuration :::
+			
+			Jenkins_Master :::(VM)	Is to Create/Manage Jenkins Jobs and Schedule the Jobs.
+					Jenkins_SlaveNode1 ==> Build Application - Java 		--> mvn03.2.6
+					Jenkins_SlaveNode1.2 ==> Build Application - Java 		--> mvn3.9
+					Jenkins_SlaveNode2 ==> Build Application - .Net 
+					Jenkins_SlaveNode3 ==> Build Application - Python 
+					Jenkins_SlaveNode4 ==> Build Application - NodeJS
+					Jenkins_SlaveNode5 ==> Build Application - Angular
+					
+			
+			
+		- Handling Remote Servers!
+		
+		
+			Jenkins_Master :::(VM)	Is to Create/Manage Jenkins Jobs and Schedule the Jobs.
+			
+					Jenkins_SlaveNode1 ==> Build Application - Java 
+								1. Launch VM 
+								2. Install the build tools
+										GIT,JDK,MAVEN
+								3. Create user in Slave Node 
+								4. Authentication : SSH Connection
+										SSH-Key Based Authentication.
+
+
+
+
+pipeline {
+    agent { label 'slave1' }
+
+    tools {
+        maven "maven-3.6.3"
+    }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM-Checkout'
+                git 'https://github.com/LoksaiETA/Java-mvn-app2.git'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+                echo 'Perform Maven Build'
+                sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to QA Envi.') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+_______________________________________________________
+Configure Slave Node1 for Java Maven App. :
+---------------------------------------------------
+Install Java ::
+
+sudo -i
+
+
+sudo apt update -y 
+sudo apt install openjdk-11-jre -y
+java -version
+
+Install GIT :
+
+sudo apt install git -y
+
+Install Maven - Build Tool :
+https://maven.apache.org/install.html
+
+sudo apt install maven -y 
+
+
+Create User in Jenkins Slave Machine & Create SSH Keys 
+
+	SSH Keys --> is composed of public and private keys 
+
+
+#Add User : 
+
+#useradd -m -d /home/devopsadmin devopsadmin
+#useradd devopsadmin
+
+useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+su - devopsadmin
+
+#ssh-keygen
+
+#for Ubuntu ::
+ssh-keygen -t rsa -b 4096 -m PEM
+
+
+ls ~/.ssh 
+
+#You should see following two files:
+
+#id_rsa - private key
+#id_rsa.pub - public
+
+
+cat id_rsa.pub > authorized_keys
+
+chown -R devopsadmin /home/devopsadmin/.ssh
+chmod 600 /home/devopsadmin/.ssh/authorized_keys
+chmod 700 /home/devopsadmin/.ssh
+
+
+In Jenkins Master - Add Node Configuration
+		
+		Goto Manage Jenkins - Add New Node Configuration										
+			
+			
+Summary ::
+
+		Config Jenkins_Master & Slave 
+		Create Pipeline -- 
+			SCM_Checkout 
+			Build 
+			
+Next ::
+		Automate the CICD pipeline
+		Deploy to Tomcat Server 
+		Email Notification....
+		Best Practise.
+			
+			
+			
+###################
+21st Oct. 2023			
+###################			
+			
+		Automate the CICD pipeline
+		Deploy to Tomcat Server		
+		Email Notification....
+		Best Practise.
+		
+		
+			- Launch VM - Application Execution
+			
+			
+			
+	Environments :::
+	
+		Non-Production Environment														Production Environment
+		
+			Dev Environment			VM
+			Build Environment       VM
+			Testing Environment     VM 
+				QA 		--> Quality Assurance Testing
+				UAT 	--> User Acceptance Testing			=====>								Prod Environment VM			
+				
+
+
+		Launch an Instance :
+		
+				Install Application Server ::: (tomcat)
+					
+				In Jenkins Master ::	Publish over SSH Plugins 
+				
+					Jenkins_Master				==> Create & Manage Jenkins Jobs/Schedule the job to slave ndoes.
+						Jenkins_SlaveNode1		==> Perform the build 
+					QA_Server 					==> Run the application using tomcat 
+					UAT_Server 
+					Kubernetes
+				
+
+				What is Deployment????
+				
+				--> It is process of copying the artifacts/binaries to the target environment.
+				
+				
+				Source Dir. 																		Destination Dir.
+				
+					target/mvn-hello-world.war					====>									/opt/tomcat/webapps/mvn-hello-world.war	
+
+
+				From Jenkins Dashboard Install Plugin :	Publish over SSH Plugins  
+				
+				Install with Restart Option - 
+				
+				go to system config. and Add Remote Server.
+				
+				cp *.war /opt/tomcat1/webapp /opt/tomcat1/webapp
+				
+pipeline {
+    agent { label 'slave1' }
+
+    tools {
+        maven "maven-3.6.3"
+    }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM-Checkout'
+                git 'https://github.com/LoksaiETA/Java-mvn-app2.git'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+                echo 'Perform Maven Build'
+                sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to QA Envi.') {
+            steps {
+				script {
+					sshPublisher(publishers: [sshPublisherDesc(configName: 'QA_Server-WE', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/mvn-hello-world.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+				}
+            }
+        }
+    }
+}				
+
+
+
+Build Triggers :::
+
+
+		- Build Periodic 		https://crontab.guru/
+		
+			It is used to schedule the job based on CronTab.
+
+					
+					Eg.: 
+						To run the Jobs for every 1 Hour.
+				
+				UseCase ::
+							Clean_up activities on the Slave nodes.
+								Job ==> Scheduled to run - once in 3 days.
+								
+							Environments :::			8AM - 10PM
+							
+								Non-Production Environment									Production Environment
+								
+									Dev Environment			VM
+									Build Environment       VM
+									Testing Environment     VM 
+										QA 		--> Quality Assurance Testing
+										UAT 	--> User Acceptance Testing			=====>		Prod Environment VM			
+																	
+					
+		
+		- Github webhook :::
+		
+			Both Github-webhook and Poll SCM are based on the source code changes.
+			
+				Github-webhook -- will trigger the job as soon as we commit the changes in Src_Code Repository.
+				
+				- Create web hook configurations in the Src_Code Repository
+					- Config the Jenkins payload url in src_code Repository
+					
+						Eg.: 
+								http://3.108.59.111:8080/github-webhook/
+								
+								http://13.232.187.76:8080/github-webhook/
+								
+				- Enable Github trigger option in Jenkins Job.
+				- Ensure that GIT is installed in Jenkins Master Node.
+						sudo apt install git -y
+		
+		
+		- Poll SCM	:::
+		
+				Poll SCM - will be scheduled to run the job only if there is any commit/push in Src_Code Repository.
+				
+				Using CrodTab - Schedule the Jobs 
+				
+					Eg.: 
+						To run the Jobs for every 1 Hour.
+						
+					Use Case :::
+								Test Cycles :::
+												8AM 
+												12 Noon 
+												3 PM
+				
+
+
+Notifications ::
+
+		Email Notifications :::::
+
+
+Email Notification Plugins :::
+
+SMTP Server :
+smtp.gmail.com
+
+SMTP Authentication
+
+SMTP Port :: 465
+
+Login to Gmail :::
+
+Click Account Settings
+
+select Security 
+
+MFA --> mobile#
+App Password = 16 bytes of code.
+What ? window
+Which Appln - email
+		
+
+
+IAC Tools :::
+
+	Ansible ::::
+	Terraform :::
+
+
+Docker/Kubernetes 
+
+######################Install TOMCAT Application Server on Ubuntu :::
+
+
+https://tomcat.apache.org/download-80.cgi
+
+Enable Port 8080 :
+
+sudo -i
+sudo apt update -y
+sudo apt install openjdk-11-jre -y 
+java -version
+
+#edit /etc/profile & add JAVA_HOME
+
+#/usr/lib/jvm/java-11-openjdk-amd64/
+
+vi /etc/profile
+
+/usr/lib/jvm/java-11-openjdk-amd64
+
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+
+source /etc/profile
+
+Install Tomcat ::
+
+cd /opt
+wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.95/bin/apache-tomcat-8.5.95.tar.gz
+
+https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.95/bin/apache-tomcat-8.5.95.tar.gz
+
+tar -xvzf /opt/apache-tomcat-8.5.95.tar.gz
+
+apache-tomcat-8.5.95.tar.gz
+
+mv apache-tomcat-8.5.95 tomcat
+
+#Start Tomcat Server:
+#Goto:
+
+cd /opt/tomcat/bin
+./startup.sh
+
+
+###########################################
+
+#Add User : 
+
+#useradd -m -d /home/devopsadmin devopsadmin
+#useradd devopsadmin
+
+useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+su - devopsadmin
+
+#ssh-keygen
+
+#for Ubuntu ::
+ssh-keygen -t rsa -b 2048 -m PEM
+
+
+ls ~/.ssh 
+
+#You should see following two files:
+
+#id_rsa - private key
+#id_rsa.pub - public
+
+
+cat id_rsa.pub > authorized_keys
+
+chown -R devopsadmin /home/devopsadmin/.ssh
+chmod 600 /home/devopsadmin/.ssh/authorized_keys
+chmod 700 /home/devopsadmin/.ssh
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#make devopsadmin user as a owner to tomcat dir :
+
+chown -R devopsadmin /opt/tomcat
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Deployment --> Copy the artifacts from source to target server 
+
+	--> Jenkins_Slave 											--->					Tomcat_Server 
+			target/mvn-hello-world.war							====>					/opt/tomcat/webapps/	
+			
+			
+Install publish over ssh in Jenkins Master 		& restart jenkins 	
+
+
+
+
+###############
+22nd Oct. 2023			
+###############
+
+
+		IAC Tools :::	Infra-Structure As Code.
+		
+			- Provision/Create the Servers and its' resources.
+			
+			- Configuration Management 
+			
+			
+		In-House tools - Scripts.
+		
+		
+			Jenkins_Master 
+				Jenkins_SlaveNode1 ==> 
+			QA_Server ==> Testing 
+
+
+		Terraform 	==> Server Provisioning 
+		
+		Ansible 	==> Configuration Management - Install/Uninstall/Update and tool/service in the VM
+		
+		Ansible ::::
+		
+			Is a IAC Tool used for Configuration Management
+			
+			Architecture of Ansible
+			
+			Components of Ansible Architecture
+			
+			
+		Test Cycle :::
+			Dev 
+			Test 
+		
+		
+		Expect a New Environment which has to be created Dynamically
+		
+		Use_Case1 :
+		
+			Pipeline CI: 
+				SCM_Checkout --> Build --> deploy_to_Test_Server			
+			
+			Pipeline : Infra-Structure Team		--> Upstream Job			
+				SCM_Checkout --> Create the VM(Using Terraform) --> Configure the VM(Using Ansible)
+				
+			Pipeline CI: 	--> DownStream Job
+				SCM_Checkout --> Build --> deploy_to_Test_Server			
+				
+		Use_Case2 :
+		
+			Dev Team : 100+ Users			==> GIT 
+			Testing Team : 100+ Users
+
+
+		What is Ansible?
+		
+		
+		Ansible Architecture?
+				- Ansible Controller 
+				
+				- Ansible Target Nodes 
+				
+				- Inventory 
+				
+				- Modules 
+				
+				- ansible.cfg
+				
+				
+			Ansible Uses Push Mechanism to deploy/config any target nodes.
+			Because of push mechanism Ansible doesn't required any Agent to be installed in target nodes. - i.e., Agentless & Simple in Management.
+			
+			
+			Ansible Modules -->  
+			
+			To Execute the Ansible Modules ::
+			
+				Ansible Adhoc Commands  -->  apt install git -y
+				
+				Ansible Playbooks		--> Scripts written using YAML 
+											It is used to run some series of tasks in the target server
+											Ansible Playbooks should be reusable
+											
+											Tomcat Server :::
+											
+												JDK
+												Define ENV Variables
+												Install Tomcat 
+												Start tomcat 
+												
+			How to work with Ansible :
+			
+				1. Inventory file 
+				2. Modules 
+				3. Playbooks 
+			
+			
+			Installation :::
+					- Install and Configure Ansible Controller & target Nodes
+					- Ansible Adhoc Commands
+					- Ansible Playbooks 
+					
+					
+					SSH Connection --> User ID / SSH Keys.
+					
+					
+					In Jenkins ::
+					
+						Jenkins_Master 				
+							Jenkins_SlaveNode1 	- Create ssh_keys in slave node & shared the private key of slavenode to master node.
+							
+							
+					In Ansible Architecture ::
+					
+						Ansible Controller 				- public / private  -- ssh -> 
+							Ansible Target1 - Dev 
+							Ansible Target2 - Test 
+			
+				Linux Authentication Methods :::
+				
+					Password based Auth
+					key based Auth
+					Token based Auth 
+					Passwordless Auth
+			
+			
+				Create Inventory File ::::
+				
+				Ansible Adhoc Commands ::::
+				
+				
+				Ansible Facts ::: using -m setup.
+				
