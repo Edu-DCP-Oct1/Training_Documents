@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loksai-eta-deploy
+  labels:
+    app: loksai-eta-lbl1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: loksai-eta-app
+  template:
+    metadata:
+      labels:
+        app: loksai-eta-app
+    spec:
+      containers:
+      - name: loksai-eta-container
+        image: loksaieta/loksai-eta-app
+        ports:
+        - containerPort: 8080            
+        volumeMounts:
+          - mountPath: /test-mnt
+            name: test-vol
+  volumes:
+  - name: test-vol
+    hostPath:
+      path: /test-vol
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loksai-eta-np-service
+  labels:
+    app: loksai-eta-app
+spec:
+  selector:
+    app: loksai-eta-lbl1
+
+  type: NodePort
+  ports:
+  - nodePort: 31002
+    port: 8080
+    targetPort: 8080
